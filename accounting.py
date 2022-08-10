@@ -24,33 +24,30 @@
 
 def customer_expected(path):
 
+    """Gives the expected cost of the melons and only shows if there is a discrepancy in the expected cost."""
+
     customer_log = open(path) 
 
-    for customer in customer_log:
-        customer = customer.rstrip() 
-        print(customer)
+    for line in customer_log:
+        line = line.rstrip() 
+        customer_info = line.split('|')
+        customer_number, name, melons, money_paid = customer_info
 
-    # """Gives the expected cost of the melons and only shows if there is a discrepancy in the expected cost."""
-
-    # melon_cost = 1.00
-    
-    # for customer in customers: 
-
-    #     name, melons, money_paid = customer 
+        melon_cost = 1.00
         
-    #     melons = int(melons)
-    #     money_paid = float(money_paid)
+        melons = int(melons)
+        money_paid = float(money_paid)
 
-    #     expected_cost = melons * melon_cost
+        expected_cost = melons * melon_cost
 
-    #     if expected_cost != money_paid:
-    #         print()
-    #         print(f"{name} paid ${money_paid:.2f},",
-    #         f"expected ${expected_cost:.2f}"
-    #         )
-    #     else: 
-    #         print()
-    #         print(f"{name} paid the adequate amount.")
+        if expected_cost != money_paid:
+            print()
+            print(f"Customer {customer_number}, {name} paid ${money_paid:.2f},",
+            f"expected ${expected_cost:.2f}"
+            )
+        else: 
+            print()
+            print(f"Customer {customer_number}, {name} paid the adequate amount.")
 
 customer_expected("customer-orders.txt")
 # customer_expected(customer_2)
