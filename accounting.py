@@ -27,29 +27,41 @@ def customer_expected(path):
     """Gives the expected cost of the melons and only shows if there is a discrepancy in the expected cost."""
 
     customer_log = open(path) 
+    # Saves opening file as a variable to use in function.
 
     for line in customer_log:
+        # Iterates over each line in file now stored as a variable
         line = line.rstrip() 
+        # Removes extra spaces from each line
         customer_info = line.split('|')
+        # Splits the information by the "|" character 
         customer_number, name, melons, money_paid = customer_info
+        # Stores separated info into new named variables w/o index splicing 
 
         melon_cost = 1.00
+        # Static variable defined within the function
         
         melons = int(melons)
         money_paid = float(money_paid)
+        # Converts the stored variables into specified data types
 
         expected_cost = melons * melon_cost
+        # Formula function will perform
 
         if expected_cost != money_paid:
             print()
             print(f"Customer {customer_number}, {name} paid ${money_paid:.2f},",
             f"expected ${expected_cost:.2f}"
             )
+        # conditional to only print statements that show a difference in the expected cost and money paid
         else: 
             print()
             print(f"Customer {customer_number}, {name} paid the adequate amount.")
+        # other aspect of the conditional that shows when payment and expected cost are the same
 
 customer_expected("customer-orders.txt")
+# function taking in the file 
+
 # customer_expected(customer_2)
 # customer_expected(customer_3)
 # customer_expected(customer_4)
